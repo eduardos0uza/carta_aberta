@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para o Amor da Minha Vida</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 50%, #e2e8f0 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 60px;
+            animation: fadeInDown 1.2s ease-out;
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+        }
+
+        .header .subtitle {
+            font-size: 1.4em;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .intro-section {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: 30px;
+            margin-bottom: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            animation: fadeInUp 1s ease-out 0.3s both;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .intro-section h2 {
+            color: #4a5568;
+            margin-bottom: 30px;
+            font-size: 2.8em;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .intro-section p {
+            line-height: 2;
+            font-size: 1.2em;
+            color: #2d3748;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 500;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .photo-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: fadeInUp 0.8s ease-out;
+            border: 1px solid rgba(255,255,255,0.3);
+            position: relative;
+            height: 350px;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+        }
+
+        .photo-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 25px;
+        }
+
+        .memory-photo, .memory-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            cursor: pointer;
+        }
+
+        .memory-video {
+            border-radius: 0;
+        }
+
+        .memory-video::-webkit-media-controls {
+            display: flex !important;
+        }
+
+        .memory-video::-webkit-media-controls-panel {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .photo-card:hover .memory-photo,
+        .photo-card:hover .memory-video {
+            transform: scale(1.05);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1em;
+            font-weight: 300;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .memory-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            color: #667eea;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1em;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        .closing-section {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            padding: 60px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .closing-section h2 {
+            color: #2d3748;
+            margin-bottom: 30px;
+            font-size: 3em;
+            font-weight: 500;
+        }
+
+        .closing-section p {
+            font-size: 1.3em;
+            line-height: 2;
+            color: #2d3748;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .heart {
+            display: inline-block;
+            color: #e53e3e;
+            animation: heartbeat 2s ease-in-out infinite;
+            font-size: 1.2em;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .floating-heart, .floating-star {
+            position: absolute;
+            animation: float 8s infinite ease-in-out;
+            opacity: 0;
+        }
+
+        .floating-heart {
+            color: rgba(229, 62, 62, 0.4);
+            font-size: 24px;
+        }
+
+        .floating-star {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        /* Modal para ampliar imagem/vídeo */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal img, .modal video {
+            max-width: 90vw;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10001;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .modal-number {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 25px;
+            z-index: 10001;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5em; }
+            .header .subtitle { font-size: 1.1em; }
+            .intro-section, .closing-section { padding: 30px; }
+            .gallery { 
+                grid-template-columns: 1fr; 
+                gap: 30px; 
+            }
+            .photo-card { margin: 0 10px; }
+            .intro-section h2, .closing-section h2 { font-size: 2em; }
+            .intro-section p, .closing-section p { font-size: 1.1em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="floating-elements"></div>
+    
+    <!-- Modal para ampliar imagens/vídeos -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-number" id="modalNumber"></div>
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+    
+    <div class="container">
+        <header class="header">
+            <h1>Para o Amor da Minha Vida</h1>
+            <!-- <p class="subtitle">Uma jornada de 39 momentos inesquecíveis</p> -->
+        </header>
+
+        <div class="intro-section">
+            <h2>Carta Aberta para o Amor da Minha Vida</h2>
+            <p>Hoje é o seu aniversário, e não tem como eu deixar de escrever.</p>
+            <p><span class="highlight">Antes de tudo, parabéns, vida!</span> Que o seu dia seja cheio de coisas boas.</p>
+            <p>Mas eu não consigo fingir que está tudo normal. A verdade é que sinto a sua falta… sinto falta do seu abraço, da sua voz, da sua presença. Sinto falta de você por completo. A vida sem você perdeu o sentido, e cada lembrança (fico vendo nossas fotos e vídeo o tempo todo)... me mostra o quanto éramos incríveis juntos.</p>
+            <p>Não vou negar, eu queria estar aí agora, comemorando ao seu lado, virando o dia contigo e passando cada segundo desse momento especial junto de você. Queria que hoje fosse não só o seu aniversário, mas também <span class="highlight">um recomeço nosso</span>.</p>
+            <p>Talvez eu não saiba dizer da melhor forma, nem me expressar direito... mas o que eu mais quero é ter você de volta, tentar de novo e fazer dar certo de verdade. Porque pra mim você sempre foi, e sempre vai ser, <span class="highlight">o amor da minha vida</span>.</p>
+            <p>Feliz aniversário, Vida. E que a vida, de algum jeito, cruze os nossos caminhos novamente... <strong>Se Deus quiser!!!</strong> Estou orando e torcendo muito por isso.</p>
+            <p style="margin-top: 30px; font-size: 1.2em;"><strong>Com toda saudade e amor,<br>Eduardo. Te amo até o infinito! <span class="heart">♥</span></strong></p>
+        </div>
+
+        <div class="gallery" id="photoGallery">
+            <!-- As 35 fotos serão inseridas aqui -->
+        </div>
+
+        <div class="closing-section">
+            <h2>Para Sempre e Infinitamente <span class="heart">♥</span></h2>
+            <p>Estas 39 memórias são apenas <span class="highlight">o começo</span> da nossa coleção infinita de momentos especiais.</p>
+            <p>Que Deus abençoe seu aniversário e que Ele, de alguma forma, permita que nossos caminhos se cruzem novamente.</p>
+            <p><strong>Te amo até o infinito, Vida!</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // Progresso da página
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateProgressBar);
+
+        // Elementos flutuantes modernos
+        function createFloatingElements() {
+            const container = document.querySelector('.floating-elements');
+            
+            setInterval(() => {
+                // Criar coração
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.innerHTML = '♥';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = '0s';
+                heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                container.appendChild(heart);
+                
+                // Criar estrela
+                const star = document.createElement('div');
+                star.className = 'floating-star';
+                star.innerHTML = '✨';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.animationDelay = '0s';
+                star.style.animationDuration = (Math.random() * 4 + 7) + 's';
+                container.appendChild(star);
+                
+                // Remover elementos após animação
+                setTimeout(() => {
+                    if (heart.parentNode) heart.remove();
+                    if (star.parentNode) star.remove();
+                }, 10000);
+            }, 3000);
+        }
+
+        // Funcionalidade para ampliar imagens/vídeos
+        function setupImageModal() {
+            const modal = document.getElementById('imageModal');
+            const modalContent = document.getElementById('modalContent');
+            const modalNumber = document.getElementById('modalNumber');
+            const closeBtn = document.querySelector('.close');
+
+            // Fechar modal
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+                // Pausar vídeo se estiver tocando
+                const video = modalContent.querySelector('video');
+                if (video) {
+                    video.pause();
+                }
+            }
+
+            // Fechar ao clicar fora do conteúdo
+            modal.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    const video = modalContent.querySelector('video');
+                    if (video) {
+                        video.pause();
+                    }
+                }
+            }
+
+            // Fechar com ESC
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    modal.style.display = 'none';
+                    const video = modalContent.querySelector('video');
+                    if (video) {
+                        video.pause();
+                    }
+                }
+            });
+        }
+
+        function openModal(element, number) {
+            const modal = document.getElementById('imageModal');
+            const modalContent = document.getElementById('modalContent');
+            const modalNumber = document.getElementById('modalNumber');
+            
+            modalNumber.textContent = `Memória ${number}`;
+            
+            if (element.tagName === 'IMG') {
+                modalContent.innerHTML = `<img src="${element.src}" alt="Foto ${number}">`;
+            } else if (element.tagName === 'VIDEO') {
+                modalContent.innerHTML = `
+                    <video controls autoplay>
+                        <source src="${element.querySelector('source').src}" type="video/mp4">
+                    </video>
+                `;
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        // Criar cards com fotos e vídeos
+        function generatePhotoCards() {
+            const gallery = document.getElementById('photoGallery');
+            
+            // Definir quais são vídeos
+            const videoNumbers = [11, 36, 37, 38, 39];
+
+            for (let i = 1; i <= 39; i++) {
+                const card = document.createElement('div');
+                card.className = 'photo-card';
+                card.style.animationDelay = (i * 0.08) + 's';
+                
+                const isVideo = videoNumbers.includes(i);
+                
+                if (isVideo) {
+                    // Card com vídeo
+                    card.innerHTML = `
+                        <div class="memory-number">${i}</div>
+                        <div class="photo-container">
+                            <video class="memory-video" controls muted autoplay loop preload="metadata" onclick="openModal(this, ${i})" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <source src="photo${i}.mp4" type="video/mp4">
+                                <source src="photo${i}.webm" type="video/webm">
+                                Seu navegador não suporta vídeo.
+                            </video>
+                            <div class="photo-placeholder" style="display: none;">
+                                <div>
+                                    <div class="icon">🎥</div>
+                                    <div>Vídeo ${i} não encontrado</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // Card com imagem
+                    card.innerHTML = `
+                        <div class="memory-number">${i}</div>
+                        <div class="photo-container">
+                            <img src="photo${i}.jpg" alt="Foto ${i}" class="memory-photo" onclick="openModal(this, ${i})" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="photo-placeholder" style="display: none;">
+                                <div>
+                                    <div class="icon">📸</div>
+                                    <div>Foto ${i} não encontrada</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                gallery.appendChild(card);
+            }
+        }
+
+        // Efeito de clique suave
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.photo-card')) {
+                const card = e.target.closest('.photo-card');
+                card.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 200);
+            }
+        });
+
+        // Observador de interseção para animações
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Inicializar tudo
+        document.addEventListener('DOMContentLoaded', function() {
+            generatePhotoCards();
+            createFloatingElements();
+            setupImageModal();
+            
+            // Observar todos os cards para animação
+            setTimeout(() => {
+                document.querySelectorAll('.photo-card').forEach(card => {
+                    observer.observe(card);
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>
